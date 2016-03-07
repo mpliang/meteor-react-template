@@ -7,6 +7,7 @@ Reaktor.init(
   <Router>
     <Route path="/" content={Home} layout={MainLayout} />
     <Route path="/register" content={Register} layout={MainLayout} />
+    <Route path="/login" content={Login} layout={MainLayout} />
   </Router>
 );
 

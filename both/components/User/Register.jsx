@@ -1,29 +1,24 @@
 Register = React.createClass({
     onSubmit(e) {
         e.preventDefault();
-        var ele = $(e.target);
-        var email = ele.find("#email").val();
-        var password = ele.find("#password").val();
-        var confirmPassword = ele.find("#confirmPassword").val();
+        var el = $(e.target);
+        var email = el.find("#email").val();
+        var password = el.find("#password").val();
+        var confirmPassword = el.find("#confirmPassword").val();
 
         if (password === confirmPassword && password !== "" && confirmPassword !== "") {
-            var account = {
-                email,
-                password
-            }
-            Accounts.createUser(account, function(err) {
-                if (err) Materialize.toast('Unexpected Error Occured Creating Account!', 4000);
-                else {
-                    Meteor.loginWithPassword(email, password, function(err){
-                        if (err) Materialize.toast('Login error', 4000);
-                        else FlowRouter.go('/')
-                    });
+            var account = {email, password};
+            Accounts.createUser(account, err => {
+                if (err) {
+                    Materialize.toast(`Error: ${err.reason}`, 4000);
                 }
-            })
+                else {
+                    FlowRouter.go('/');
+                }
+            });
         } else {
-            Materialize.toast('Passwords must match!', 4000)
+            Materialize.toast('Passwords must match!', 4000);
         }
-
     },
     render() {
         return (
