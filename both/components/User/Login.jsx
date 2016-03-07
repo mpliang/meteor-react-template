@@ -7,12 +7,6 @@ Login = React.createClass({
 
         Meteor.loginWithPassword(email, password, err => {
             err ? Materialize.toast(`Error: ${err.reason}`, 4000) : FlowRouter.go('/');
-            // if (err) {
-            //     Materialize.toast(`Error: ${err.reason}`, 4000);
-            // }
-            // else {
-            //     FlowRouter.go('/');
-            // }
         })
     },
     render() {

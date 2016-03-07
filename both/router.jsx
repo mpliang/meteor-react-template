@@ -6,10 +6,16 @@
 Reaktor.init(
   <Router>
     <Route path="/" content={Home} layout={MainLayout} />
-    <Route path="/register" content={Register} layout={MainLayout} />
-    <Route path="/login" content={Login} layout={MainLayout} />
+    <Route path="/register" content={Register} layout={MainLayout} triggersEnter={loggedIn} />
+    <Route path="/login" content={Login} layout={MainLayout} triggersEnter={loggedIn} />
   </Router>
 );
+
+function loggedIn(context, doRedirect) {
+    if (User.isLoggedIn()){
+        doRedirect('/');
+    }
+};
 
 // Reaktor doensn't have a notFound component yet
 FlowRouter.notFound = {
