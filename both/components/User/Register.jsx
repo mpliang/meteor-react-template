@@ -9,12 +9,7 @@ Register = React.createClass({
         if (password === confirmPassword && password !== "" && confirmPassword !== "") {
             var account = {email, password};
             Accounts.createUser(account, err => {
-                if (err) {
-                    Materialize.toast(`Error: ${err.reason}`, 4000);
-                }
-                else {
-                    FlowRouter.go('/');
-                }
+              err ? Materialize.toast(`Error: ${err.reason}`, 4000) : FlowRouter.go('/');
             });
         } else {
             Materialize.toast('Passwords must match!', 4000);
