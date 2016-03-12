@@ -8,11 +8,18 @@ Reaktor.init(
     <Route path="/" content={Home} layout={MainLayout} />
     <Route path="/register" content={Register} layout={MainLayout} triggersEnter={loggedIn} />
     <Route path="/login" content={Login} layout={MainLayout} triggersEnter={loggedIn} />
+    <Route path="/changePassword" content={ChangePassword} layout={MainLayout} triggersEnter={notLoggedIn}/>
   </Router>
 );
 
 function loggedIn(context, doRedirect) {
     if (User.isLoggedIn()){
+        doRedirect('/');
+    }
+};
+
+function notloggedIn(context, doRedirect) {
+    if (!User.isLoggedIn()){
         doRedirect('/');
     }
 };
